@@ -56,21 +56,21 @@ function aalborg_theme_pagesetup() {
 			'link_class' => 'elgg-topbar-dropdown',
 		));
 
-		$item = elgg_get_menu_item('topbar', 'usersettings');
+		$item = aalborg_theme_elgg_get_menu_item('topbar', 'usersettings');
 		if ($item) {
 			$item->setParentName('account');
 			$item->setText(elgg_echo('settings'));
 			$item->setPriority(103);
 		}
 
-		$item = elgg_get_menu_item('topbar', 'logout');
+		$item = aalborg_theme_elgg_get_menu_item('topbar', 'logout');
 		if ($item) {
 			$item->setParentName('account');
 			$item->setText(elgg_echo('logout'));
 			$item->setPriority(104);
 		}
 
-		$item = elgg_get_menu_item('topbar', 'administration');
+		$item = aalborg_theme_elgg_get_menu_item('topbar', 'administration');
 		if ($item) {
 			$item->setParentName('account');
 			$item->setText(elgg_echo('admin'));
@@ -78,7 +78,7 @@ function aalborg_theme_pagesetup() {
 		}
 
 		if (elgg_is_active_plugin('site_notifications')) {
-			$item = elgg_get_menu_item('topbar', 'site_notifications');
+			$item = aalborg_theme_elgg_get_menu_item('topbar', 'site_notifications');
 			if ($item) {
 				$item->setParentName('account');
 				$item->setText(elgg_echo('site_notifications:topbar'));
@@ -118,4 +118,29 @@ function aalborg_theme_setup_head($hook, $type, $data) {
 	);
 
 	return $data;
+}
+
+/**
+ * Get a menu item registered for a menu
+ *
+ * @param string $menu_name The name of the menu
+ * @param string $item_name The unique identifier for this menu item
+ *
+ * @return ElggMenuItem
+ */
+function aalborg_theme_elgg_get_menu_item($menu_name, $item_name) {
+	global $CONFIG;
+
+	if (!isset($CONFIG->menus[$menu_name])) {
+		return null;
+	}
+
+	foreach ($CONFIG->menus[$menu_name] as $index => $menu_object) {
+		/* @var ElggMenuItem $menu_object */
+		if ($menu_object->getName() == $item_name) {
+			return $CONFIG->menus[$menu_name][$index];
+		}
+	}
+
+	return null;
 }
