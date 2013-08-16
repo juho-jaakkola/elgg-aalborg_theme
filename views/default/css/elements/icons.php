@@ -334,8 +334,8 @@
 	height: 100px;
 }
 .elgg-avatar-large > a > img {
-	max-width: 100%;
-	height: auto;
+	width: 200px;
+	height: 200px;
 }
 .elgg-state-banned {
 	opacity: 0.5;
