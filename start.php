@@ -77,18 +77,11 @@ function aalborg_theme_pagesetup() {
 			$item->setPriority(101);
 		}
 
-		if (elgg_is_active_plugin('site_notifications')) {
-			$item = aalborg_theme_elgg_get_menu_item('topbar', 'site_notifications');
-			if ($item) {
-				$item->setParentName('account');
-				$item->setText(elgg_echo('site_notifications:topbar'));
-				$item->setPriority(102);
-			}
-		}
-
 		if (elgg_is_active_plugin('reportedcontent')) {
-			$item = elgg_unregister_menu_item('footer', 'report_this');
-			if ($item) {
+			$item = aalborg_theme_elgg_get_menu_item('footer', 'report_this');
+			$success = elgg_unregister_menu_item('footer', 'report_this');
+
+			if ($success) {
 				$item->setText(elgg_view_icon('report-this'));
 				$item->setPriority(500);
 				$item->setSection('default');
