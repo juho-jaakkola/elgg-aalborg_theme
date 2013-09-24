@@ -14,7 +14,7 @@ function aalborg_theme_init() {
 	// theme specific CSS
 	elgg_extend_view('css/elgg', 'aalborg_theme/css');
 
-	elgg_register_plugin_hook_handler('head', 'page', 'aalborg_theme_setup_head');
+	elgg_extend_view('page/elements/head', 'aalborg_theme/head');
 
 	elgg_register_js('respond', 'mod/aalborg_theme/vendors/js/respond.min.js');
 	elgg_load_js('respond');
@@ -89,28 +89,6 @@ function aalborg_theme_pagesetup() {
 			}
 		}
 	}
-}
-
-/**
- * Register items for the html head
- *
- * @param string $hook Hook name ('head')
- * @param string $type Hook type ('page')
- * @param array  $data Array of items for head
- * @return array
- */
-function aalborg_theme_setup_head($hook, $type, $data) {
-	$data['metas'][] = array(
-		'name' => 'viewport',
-		'content' => 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
-	);
-
-	$data['links'][] = array(
-		'rel' => 'apple-touch-icon',
-		'href' => elgg_normalize_url('mod/aalborg_theme/graphics/homescreen.png'),
-	);
-
-	return $data;
 }
 
 /**
