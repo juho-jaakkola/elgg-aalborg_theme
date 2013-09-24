@@ -94,7 +94,7 @@
 .elgg-layout {
 	min-height: 360px;
 }
-.elgg-layout-widgets > .elgg-widgets {
+.elgg-widgets {
 	float: right;
 }
 .elgg-sidebar {
